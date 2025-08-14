@@ -1,0 +1,16 @@
+
+services:
+  db:
+    image: postgres:17
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: desafionode
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docker/setup.sql:/docker-entrypoint-initdb.d/init.sql
+# start container  docker-compose up -d
+# stop container   docker-compose stop
+# drop database    docker-compose down

@@ -1,0 +1,1 @@
+CREATE DATABASE desafionode_test;
