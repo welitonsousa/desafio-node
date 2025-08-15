@@ -1,13 +1,13 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
 import { userByReq } from "./hook-signed.ts";
-import { UserRules } from "../@types/user-rules.js";
+import { UserRoles } from "../@types/user-roles.ts";
 
 
-export const hookRule = (rule: UserRules) => {
+export const hookRole = (role: UserRoles) => {
   return async (req: FastifyRequest, reply: FastifyReply) => {
     try {
       const user = userByReq(req);
-      if (user?.rule !== 'admin') {
+      if (user?.role !== role) {
         return reply.status(403).send();
       }
     } catch (error) {

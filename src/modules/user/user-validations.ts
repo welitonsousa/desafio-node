@@ -1,5 +1,5 @@
 import z from "zod";
-import { userRulesArray } from "../../@types/user-rules.ts";
+import { userRolesArray } from "../../@types/user-roles.ts";
 
 export const userValidations = {
   me: {
@@ -8,7 +8,7 @@ export const userValidations = {
         id: z.number(),
         name: z.string(),
         email: z.email(),
-        role: z.enum(userRulesArray),
+        role: z.enum(userRolesArray),
       })
     }
   },
@@ -17,11 +17,11 @@ export const userValidations = {
       email: z.email(),
       name: z.string().min(2).max(100),
       password: z.string().min(6).max(100),
-      rule: z.enum(userRulesArray).default('student'),
+      role: z.enum(userRolesArray).default('student'),
     }),
     response: {
       200: z.null(),
-      422: z.object({
+      409: z.object({
         message: z.string()
       })
     }

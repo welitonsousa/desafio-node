@@ -10,6 +10,7 @@ async function seed() {
   const userData = Array.from({ length: 10 }).map(() => ({
     name: faker.person.fullName(),
     email: faker.internet.email(),
+    password: faker.internet.password(),
   }));
   const insertedUsers = await db.insert(userSchema).values(userData).returning();
 

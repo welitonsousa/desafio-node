@@ -3,7 +3,7 @@ import { userValidations } from "../user-validations.ts";
 import { hookSigned, userByReq } from "../../../hooks/hook-signed.ts";
 
 export const routeUserMe: FastifyPluginAsyncZod = async (server) => {
-  server.get('/me', {
+  server.get('/users/me', {
 
     preHandler: [hookSigned],
     schema: {
@@ -17,7 +17,7 @@ export const routeUserMe: FastifyPluginAsyncZod = async (server) => {
       email: user.email,
       id: user.id,
       name: user.name,
-      role: user.rule,
+      role: user.role,
     });
   })
 }

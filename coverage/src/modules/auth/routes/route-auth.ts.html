@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.57% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/28</span>
+                <span class='fraction'>28/28</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.57% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/28</span>
+                <span class='fraction'>28/28</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -96,7 +96,8 @@
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -105,36 +106,37 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span></td><td class="text"><pre class="prettyprint lang-js">import type { FastifyPluginAsyncZod } from "fastify-type-provider-zod";
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span></td><td class="text"><pre class="prettyprint lang-js">import type { FastifyPluginAsyncZod } from "fastify-type-provider-zod";
 import type { SignedUser } from "../../../@types/signed-user.ts";
 import { authValidations } from "../auth-validations.ts";
 import { repositoryUserGet } from "../../user/repositories/repository-user-get.ts";
-import { verify } from "argon2";
 import { ENV } from "../../../constants/env.ts";
+import { verifySafe } from "../../../@types/argon-verify.ts";
 import jwt from "jsonwebtoken";
 &nbsp;
 export const routeAuth: FastifyPluginAsyncZod = async (server) =&gt; {
@@ -145,22 +147,23 @@ export const routeAuth: FastifyPluginAsyncZod = async (server) =&gt; {
       response: authValidations.sign.response,
     }
   }, async (req, res) =&gt; {
-<span class="cstat-no" title="statement not covered" >    const { email, password } = req.body;</span>
+    const { email, password } = req.body;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    const user = await repositoryUserGet({ email })</span>
-<span class="cstat-no" title="statement not covered" >    if (!user) return res.status(400).send({ message: "Email ou senha inválidos" })</span>
+    const user = await repositoryUserGet({ email })
+    if (!user) return res.status(400).send({ message: "Email ou senha inválidos" })
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    const matchPassword = await verify(user.password, password)</span>
-<span class="cstat-no" title="statement not covered" >    if (!matchPassword) return res.status(400).send({ message: "Email ou senha inválidos" })</span>
+    const matchPassword = await verifySafe(user.password, password)
+    if (!matchPassword) return res.status(400).send({ message: "Email ou senha inválidos" })
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    const payload: SignedUser = {</span>
-<span class="cstat-no" title="statement not covered" >      id: user.id,</span>
-<span class="cstat-no" title="statement not covered" >      email: user.email,</span>
-<span class="cstat-no" title="statement not covered" >      rule: user.role,</span>
-<span class="cstat-no" title="statement not covered" >      name: user.name,</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >    const token = jwt.sign(payload, ENV.JWT_SECRET)</span>
-<span class="cstat-no" title="statement not covered" >    return res.status(200).send({ token });</span>
+&nbsp;
+    const payload: SignedUser = {
+      id: user.id,
+      email: user.email,
+      role: user.role,
+      name: user.name,
+    }
+    const token = jwt.sign(payload, ENV.JWT_SECRET)
+    return res.status(200).send({ token });
   })
 }</pre></td></tr></table></pre>
 
@@ -169,7 +172,7 @@ export const routeAuth: FastifyPluginAsyncZod = async (server) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-08-15T05:24:31.222Z
+                at 2025-08-15T14:55:44.767Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

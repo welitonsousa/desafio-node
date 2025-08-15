@@ -1,6 +1,6 @@
 export interface SignedUser {
   id: number;
   email: string;
-  rule: UserRules;
+  role: UserRoles;
   name: string;
 }

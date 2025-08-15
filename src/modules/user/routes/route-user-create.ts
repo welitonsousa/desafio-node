@@ -16,10 +16,10 @@ export const routeUserCreate: FastifyPluginAsyncZod = async (server) => {
         email: req.body.email,
         name: req.body.name,
         password: await hash(req.body.password),
-        role: req.body.rule,
+        role: req.body.role,
       });
     } catch (e) {
-      return res.status(422).send({ message: 'Este usuário já existe' })
+      return res.status(409).send({ message: 'Este usuário já existe' })
     }
     return res.send();
   });
